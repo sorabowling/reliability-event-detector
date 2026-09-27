@@ -8,7 +8,8 @@ concentrated in a shared group? How much less energy was delivered than expected
 The example uses synthetic logs for 108 charging connectors across 18 sites over
 84 days. Incident labels are not inputs to detection.
 
-Open [analysis.ipynb](analysis.ipynb) for the analysis and saved figures.
+Open [analysis.ipynb](analysis.ipynb) for the exploration sandbox, worked examples,
+and saved figures. It imports reusable functions from `reliability_detector/`.
 
 ![Daily station impairment and selected systemic events](figures/network_reliability.png)
 
@@ -164,6 +165,28 @@ whole analysis. Power thresholds are heuristics for this synthetic DC network.
 The synthetic example demonstrates the method rather than establishing accuracy
 on real charging networks.
 
+## Code layout
+
+| File | Responsibility |
+| --- | --- |
+| [analysis.ipynb](analysis.ipynb) | Run the pipeline, inspect tables, and explore the worked examples. |
+| [data.py](reliability_detector/data.py) | Load CSVs, retain every station-day, and calculate metrics and weekday baselines. |
+| [detection.py](reliability_detector/detection.py) | Flag station impairment, test shared groups, and select daily events. |
+| [summaries.py](reliability_detector/summaries.py) | Compare firmware rates and estimate daily, episode, and group energy shortfalls. |
+| [plots.py](reliability_detector/plots.py) | Draw figures from the prepared tables. |
+
+The notebook keeps intermediate tables available for exploration. Plot functions
+return a Matplotlib figure and axes, so cells control customization and saving.
+Scripts can use the complete detector directly from the project folder:
+
+```python
+from reliability_detector import detect_reliability_events
+
+daily = detect_reliability_events(
+    "data/sites.csv", "data/stations.csv", "data/attempts.csv",
+)
+```
+
 ## Run locally
 
 Use Python 3.12. From the project folder:
@@ -175,10 +198,17 @@ python -m pip install -r requirements.txt jupyterlab
 python -m jupyter lab analysis.ipynb
 ```
 
-Run cells in order. The three input CSVs are included in `data/`. The optional
+Run cells in order. After editing a module, restart the notebook kernel and run
+all cells to load the changes. The three input CSVs are included in `data/`. The optional
 [generator](generate_data.py) records the simulation assumptions and incident
 schedule. To regenerate the CSVs, overwriting the included copies:
 
 ```bash
 python generate_data.py --output-dir data --seed 20260927
+```
+
+Run the focused regression checks from the project folder:
+
+```
+python -m unittest discover -s tests
 ```
