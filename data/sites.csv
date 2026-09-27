@@ -1,0 +1,19 @@
+site_id,city,state,region,type,stations
+HUB_201,Portland,OR,West,Highway Rest Stop,4
+HUB_202,Sacramento,CA,West,Hotel,8
+HUB_203,Spokane,WA,West,Hotel,6
+HUB_204,Boise,ID,West,Retail,4
+HUB_205,Reno,NV,West,Grocery,8
+HUB_206,Salt Lake City,UT,West,Retail,4
+HUB_207,Raleigh,NC,East,Grocery,8
+HUB_208,Richmond,VA,East,Parking Garage,4
+HUB_209,Pittsburgh,PA,East,Grocery,6
+HUB_210,Charlotte,NC,East,Highway Rest Stop,4
+HUB_211,Tampa,FL,East,Retail,8
+HUB_212,Jacksonville,FL,East,Workplace,8
+HUB_213,Madison,WI,Central,Parking Garage,6
+HUB_214,Milwaukee,WI,Central,Workplace,6
+HUB_215,Omaha,NE,Central,Workplace,6
+HUB_216,Tulsa,OK,Central,Hotel,4
+HUB_217,Albuquerque,NM,West,Parking Garage,8
+HUB_218,Kansas City,MO,Central,Highway Rest Stop,6
